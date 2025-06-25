@@ -1,0 +1,24 @@
+Top 25 processes by RAM usage
+ps -eo pid,ppid,cmd,%mem,%cpu,rss --sort=-rss | head -n 25
+
+Monitor memory growth
+watch -n 5 'ps -p 873 -o pid,cmd,%mem,rss'
+
+Fancy all-in-one for quick health snapshot
+echo -e "\n== Uptime ==" && uptime && echo -e "\n== Load ==" && cat /proc/loadavg && echo -e "\n== Memory ==" && free -h && echo -e "\n== Swap ==" && swapon --show && echo -e "\n== Disk Usage ==" && df -h / && echo -e "\n== Top Processes ==" && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 10
+
+Fancy with network
+echo -e "\n== Uptime ==" && uptime && echo -e "\n== Load ==" && cat /proc/loadavg && echo -e "\n== Memory ==" && free -h && echo -e "\n== Swap ==" && swapon --show && echo -e "\n== Disk Usage ==" && df -h / && echo -e "\n== Top Processes ==" && ps -eo pid,ppid,cmd,%mem,%cpu --sort=-%mem | head -n 10 && echo -e "\n== Network Interfaces ==" && ip a && echo -e "\n== Listening Ports ==" && ss -tuln && echo -e "\n== Recent Network Connections ==" && ss -tn state established | head -n 10
+
+One liner to create a 1G persistant swap 
+sudo fallocate -l 1G /swapfile && sudo chmod 600 /swapfile && sudo mkswap /swapfile && sudo swapon /swapfile && echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+Check swappiness - default around 60
+cat /proc/sys/vm/swappiness
+
+List dir usage over 100M
+du -BM /var | awk '$1+0 >= 100' | sort -hr
+
+List dir usage over 100M but fancy 
+du -BM /var | awk '$1+0 >= 100' | sort -nr | cut -f2- | xargs -I{} du -sh {}
+
