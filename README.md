@@ -2,18 +2,18 @@
 
 Welcome! This is a curated collection of practical scripts, config notes, and troubleshooting snippets gathered over 20+ years in IT infrastructure, operations, and support.
 
-What began as a personal reference file named `thingstoremember.txt` has grown into a living knowledge base. These scripts and notes have helped me deploy, repair, automate, and explain real-world systems — both in traditional enterprise environments and cloud-native settings, often under pressure.
+What began as a personal reference file named 'thingstoremember.txt' has grown into a living knowledge base. These scripts and notes have helped me deploy, repair, automate, and explain real-world systems — both in traditional enterprise environments and cloud-native settings, often under pressure.
 
-Not everything from my archive made it here — you won’t find notes on hotswapping a 3Com card, for example — but what *is* here reflects what I still use, still adapt, and still trust to get things done. I hope it proves useful to you too.
+Not everything from my archive made it here - you won’t find notes on hotswapping a 3Com card, for example - but what *is* here reflects what I still use, still adapt, and still trust to get things done. I hope it proves useful to you too.
 
 
 ---
 
 ## 🔧 What's in This Repository
 
-- 'scripts/' — Various scripts for various things, system checks, log handling, backups, etc. 
-- 'configs/' — Configurations for services like Apache and PHP
-- 'quickrefs/' — One-liners and annotated commands for network, Linux, cloud tools, troubleshooting and so forth
+- /scripts/ — Various scripts for various things, system checks, log handling, backups, etc. 
+- /configs/ — Configurations for services like Apache and PHP
+- /quickrefs/ — One-liners and annotated commands for network, Linux, cloud tools, troubleshooting and so forth
 
 ---
 
