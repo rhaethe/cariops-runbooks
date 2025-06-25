@@ -1,6 +1,15 @@
 Top 25 processes by RAM usage
 ps -eo pid,ppid,cmd,%mem,%cpu,rss --sort=-rss | head -n 25
 
+Top process by cpu
+ps -eo pid,ppid,cmd,%cpu,%mem --sort=-%cpu | head -n 10
+
+Find oom-killer
+journalctl -k | grep -i 'killed process'
+
+Kernel OS and Hardware summary
+uname -a && cat /etc/os-release && lscpu | grep -E 'Model|CPU\(s\)|Thread'
+
 Monitor memory growth
 watch -n 5 'ps -p 873 -o pid,cmd,%mem,rss'
 
@@ -21,4 +30,75 @@ du -BM /var | awk '$1+0 >= 100' | sort -hr
 
 List dir usage over 100M but fancy 
 du -BM /var | awk '$1+0 >= 100' | sort -nr | cut -f2- | xargs -I{} du -sh {}
+
+Find the inode-hungry files
+find / -xdev -printf '%h\n' | sort | uniq -c | sort -rn | head -n 10
+find /var -xdev -type f | cut -d/ -f1-4 | sort | uniq -c | sort -rn | head -n 10
+
+System services that failed to start - fancified, when systemctl --failed just won't do
+systemctl --failed | tail -n +2 | awk '{print $1}' | xargs -r -n1 systemctl status
+
+Boot performance
+systemd-analyze blame | head -n 15
+
+Checking boot order
+systemd-analyze critical-chain
+
+Check for i/o wait bottlenecks if you have sysstat
+pidstat -d 1 1 | sort -k6 -nr | head -n 10
+
+Check for i/o wait bottlenecks if no sysstat present
+iostat -xz 1 1
+
+Live log tail with highlights
+journalctl -xe | less
+
+Log tail for the past hour
+journalctl -p 3 -S -1h
+
+Unexpected restarts
+journalctl -u '*'.service -S -1h | grep "Starting\|Stopped"
+
+All open net connections by process
+lsof -i -Pn | grep ESTABLISHED
+
+Find recently changed files
+find / -type f -mmin -10 2>/dev/null
+
+Detect active accounts
+getent passwd | grep -E '/bin/(bash|sh|zsh)$'
+
+Identifies users with no or disabled passwords
+sudo awk -F: '($2=="!" || $2=="*" || $2=="") {print $1}' /etc/shadow
+
+All block devices and mounts
+lsblk -o NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL
+
+PCI / USB things
+echo -e "\n== PCI Devices ==" && lspci -k && echo -e "\n== USB Devices ==" && lsusb -v 2>/dev/null | grep -E '^Bus|iProduct|Driver'
+
+SMART health summary
+for d in /dev/sd?; do echo -e "\n=== $d ==="; sudo smartctl -H "$d"; done
+
+Disk + NVMe + I/O + LVM
+(for d in /dev/sd? /dev/nvme?n?; do [ -b "$d" ] && echo -e "\n== SMART: $d ==" && sudo smartctl -H "$d"; done) && echo -e "\n== I/O Stats ==" && iostat -xz 1 1 && echo -e "\n== LVM Overview ==" && vgs && pvs && lvs -o +devices
+
+Top 10 hitting Apache | Nginx
+awk '{print $1}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -n 10
+awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head -n 10
+
+Recent Apache errors
+grep "\[error\]" /var/log/apache2/error.log | tail -n 20
+
+Top 10 slowest Apache requests
+awk '{print $NF, $(NF-1), $(NF-2)}' /var/log/apache2/access.log | sort -nr | head -n 10
+
+Top user agents on Apache | Nginx
+awk -F\" '{print $6}' /var/log/apache2/access.log | sort | uniq -c | sort -nr | head -n 10
+awk -F\" '{print $6}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | head -n 10
+
+PHP quickstats
+which php && php -v && php -i | grep -E 'Loaded Configuration File|memory_limit|max_execution_time|upload_max_filesize'
+
+
 
