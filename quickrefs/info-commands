@@ -100,5 +100,8 @@ awk -F\" '{print $6}' /var/log/nginx/access.log | sort | uniq -c | sort -nr | he
 PHP quickstats
 which php && php -v && php -i | grep -E 'Loaded Configuration File|memory_limit|max_execution_time|upload_max_filesize'
 
+Docker eating memory check
+docker stats --no-stream --format '{{.Name}} {{.MemUsage}}' | sort -k2 -hr
+
 
 
