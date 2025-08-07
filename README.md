@@ -1,4 +1,4 @@
-# 📒 CariOps SRE Runbooks & Automation Snippets
+# CariOps SRE Runbooks & Automation Snippets
 
 Welcome! This is a curated collection of practical scripts, config notes, and troubleshooting snippets gathered over 20+ years in IT infrastructure, operations, and support.
 
@@ -9,7 +9,7 @@ Not everything from my archive made it here - you won’t find notes on hotswapp
 
 ---
 
-## 🔧 What's in This Repository
+## What's in This Repository
 
 - /scripts/ — Various scripts for various things, system checks, log handling, backups, etc. 
 - /configs/ — Configurations for services like Apache and PHP
@@ -17,7 +17,7 @@ Not everything from my archive made it here - you won’t find notes on hotswapp
 
 ---
 
-## ⚙️ Purpose
+## Purpose
 
 This repo reflects how I work:
 - Document what’s 'in the moment'
@@ -29,20 +29,20 @@ This is not a product. It’s my personal runbook and professional toolkit.
 
 ---
 
-## 🤝 Intended Audience
+## Intended Audience
 
-- SREs, platform engineers, and infra-focused developers
+- Infra, cloud, and platform engineers
 - Hiring teams who want a sense of how I think operationally
 - Anyone looking for battle-tested infrastructure snippets and practices
 
 ---
 
-## 🗂️ License
+## License
 
 This is a personal reference repo, not a packaged tool. As it is a collection of things I've discovered and adapted over the years, feel free to fork or adapt anything useful to you. Attribution is appreciated where appropriate.
 
 ---
 
-## 👋 About Me
+## About Me
 
-I'm Cari J. Merola — infrastructure & SRE engineer with 25+ years in operations, change/config management, and reliability-minded systems. If you're interested in collaboration, mentorship, or roles across EU/UK, feel free to connect.
+I'm Cari J. Merola — infrastructure engineer with 25+ years in operations, change/config management, and security-minded systems. If you're interested in collaboration, mentorship, or roles across EU/UK, feel free to connect.
