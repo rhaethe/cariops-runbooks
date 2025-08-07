@@ -1,4 +1,4 @@
-# CariOps SRE Runbooks & Automation Snippets
+# CariOps Runbooks & Automation Snippets
 
 Welcome! This is a curated collection of practical scripts, config notes, and troubleshooting snippets gathered over 20+ years in IT infrastructure, operations, and support.
 
